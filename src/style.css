@@ -110,6 +110,8 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Static gradient fallback — visible while Spline loads or on low-end devices */
+  background: linear-gradient(135deg, #020810 0%, #0a2848 40%, #1a3050 70%, #0a0a1a 100%);
 }
 
 .hero-3d-bg spline-viewer {
@@ -293,6 +295,8 @@ ul { list-style: none; }
 .identity-section {
   background: var(--light-bg);
   padding: 120px 40px 80px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 
 .identity-headline {
@@ -448,6 +452,8 @@ ul { list-style: none; }
   background: var(--dark-bg);
   padding: 120px 40px;
   overflow: hidden;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .radical-inner {
@@ -503,6 +509,8 @@ ul { list-style: none; }
 .process-section {
   background: var(--light-bg);
   padding: 120px 40px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .process-inner {
@@ -559,6 +567,8 @@ ul { list-style: none; }
 .contact-section {
   background: var(--dark-bg);
   padding: 120px 40px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 .contact-inner {
@@ -794,4 +804,21 @@ ul { list-style: none; }
   .process-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; }
   .footer-brand { font-size: 32px; }
+}
+
+/* ---------- REDUCED MOTION (accessibility + perf) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+  .hero-brand-dot {
+    animation: none;
+  }
 }
